@@ -12,7 +12,7 @@ function test({ fetcher, repo, expectation }) {
       assume(config).deep.equals(expectation);
       done();
     });
-  }
+  };
 }
 
 describe('Reading config from each source', function () {
@@ -28,5 +28,10 @@ describe('Reading config from each source', function () {
       repo: path.join(__dirname, 'fixtures', 'wrhs.toml'),
       expectation: { }
     }));
+  });
+
+  describe('package.json', function () {
+    it('should return the correct config');
+    it('should return any empty object if no wrhs config is present');
   });
 });

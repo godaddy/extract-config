@@ -9,15 +9,14 @@ const path = require('path');
 module.exports = function (repo, callback) {
   const file = path.join(repo, '.wrhsrc');
   fs.readFile(file, 'utf8', (err, data) => {
-    debugger;
     // there was an issue with reading the file
-    if(err && err.code !== 'ENOENT') {
+    if (err && err.code !== 'ENOENT') {
       return callback(err);
     }
 
     // the file does not exist
-    if(err && err.code === 'ENOENT') {
-      return callback(null, {})
+    if (err && err.code === 'ENOENT') {
+      return callback(null, {});
     }
 
 
