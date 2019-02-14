@@ -2,9 +2,9 @@
   "name": "@wrhs/extract-config",
   "version": "0.0.0",
   "description": "Extract warehouse.ai configuration from a given unpacked directory",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "lint": "eslint-godaddy *.js test/*.js",
+    "lint": "eslint-godaddy src/*.js test/*.js",
     "test:unit": "mocha test/*.js",
     "test": "npm run test:unit && npm run lint"
   },
