@@ -2,8 +2,8 @@ const path = require('path');
 const assume = require('assume');
 
 const wrhsrc = require('../src/wrhsrc');
-const pkg = require('../src/package');
-const toml = require('../src/package');
+// const pkg = require('../src/package');
+const toml = require('../src/toml');
 
 function test({ fetcher, repo, expectation }) {
   return function (done) {
@@ -33,5 +33,19 @@ describe('Reading config from each source', function () {
   describe('package.json', function () {
     it('should return the correct config');
     it('should return any empty object if no wrhs config is present');
+  });
+
+  describe('wrhs.toml', function () {
+    it('should return the correct config', test({
+      fetcher: toml,
+      repo: path.join(__dirname, 'fixtures', 'wrhs.toml'),
+      expectation: { hello: 'there' }
+    }));
+
+    it('should not return anything from a repo that does not have one', test({
+      fetcher: toml,
+      repo: path.join(__dirname, 'fixtures', '.wrhsrc'),
+      expectation: { }
+    }));
   });
 });

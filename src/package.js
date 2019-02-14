@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 /**
- * Return the .wrhsrc at a given path, or an empty object if no file exists
+ * Return the package.json at a given path, or an empty object if no file exists
  * @param  {String}   repo     path to repo
  * @param  {Function} callback completion handler
  */
