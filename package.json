@@ -4,7 +4,9 @@
   "description": "Extract warehouse.ai configuration from a given unpacked directory",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint-godaddy *.js test/*.js",
+    "test:unit": "mocha test/*.js",
+    "test": "npm run test:unit && npm run lint"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,12 @@
   "bugs": {
     "url": "https://github.com/warehouseai/extract-config/issues"
   },
-  "homepage": "https://github.com/warehouseai/extract-config#readme"
+  "homepage": "https://github.com/warehouseai/extract-config#readme",
+  "devDependencies": {
+    "eslint": "^5.13.0",
+    "eslint-config-godaddy": "^3.0.0",
+    "eslint-plugin-json": "^1.4.0",
+    "eslint-plugin-mocha": "^5.3.0",
+    "mocha": "^5.2.0"
+  }
 }
