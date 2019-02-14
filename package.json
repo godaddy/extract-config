@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/warehouseai/extract-config#readme",
   "devDependencies": {
+    "assume": "^2.1.0",
     "eslint": "^5.13.0",
     "eslint-config-godaddy": "^3.0.0",
     "eslint-plugin-json": "^1.4.0",
