@@ -47,9 +47,9 @@ const unpackedRepo = path.join('path', 'to', 'repo');
 
 ```
 
-## `config` specification
+# What is in `config`?
 
-At most, the `config` will provide the following information
+At most, the `config` will provide the following information:
 
 ```js
 {
@@ -118,8 +118,108 @@ At most, the `config` will provide the following information
 }
 ```
 
-- Enumeration of recognized files
-- Order of precedence of recognized files
+## Allowed files
+
+`@wrhs/extract-config` will recognize configuration options in this order to
+fill in the above `config`.
+
+### `.wrhsrc`
+
+This is a simple `json` file that contains information in the above format
+
+```json
+{
+  "build": "webpack",
+  "locales": [
+    "C",
+    "C++",
+    "ArnoldC"
+  ]
+}
+```
+
+### `package.json`
+
+Similar to `.wrhsrc` you can place these values into either the base level of
+your `package.json`, or into a `wrhs` object (we will merge the base level into
+the `wrhs` object if any)
+
+```json
+{
+  "name": "my-cool-package",
+  "version": "1.2.3",
+  "build": "webpack",
+  "wrhs": {
+    "locales": [
+      "Sokovia",
+      "Wakanda",
+      "Latveria"
+    ]
+  }
+}
+```
+
+### `wrhs.toml`
+
+```toml
+[files]
+dev = ['output.js', 'output.css']
+test = ['output.min.js', 'output.min.css']
+prod = ['output.min.js', 'output.min.css']
+
+[minify.compress]
+unsafe = true
+dead_code = true
+```
+
+### Order of configuration precedence
+
+They are listed in order above, but we will take the first information, as it
+first appears, from the following files in this order:
+
+1. `.wrhsrc`
+2. `package.json.wrhs`
+3. `package.json`
+4. `wrhs.toml`
+
+Any configuration from earlier in the list will identically named configuration
+later in the list. For example, I have these 2 files present:
+
+`.wrhsrc`
+```json
+{
+  "build" :"webpack",
+  "locales": [
+    "Earth", "Mars"
+  ]
+}
+```
+
+`wrhs.toml`
+```toml
+locales=['Krypton', 'Oa']
+[files]
+test = ['output.css']
+prod = ['output.min.css']
+```
+
+The final configuration object will be:
+
+```js
+{
+  build: 'webpack',
+  locales: [
+    'Earth', 'Mars'
+  ],
+  files: {
+    test: ['output.css']
+    prod: ['output.min.css']
+  }
+}
+```
+
+We **highly** recommended keeping all of your configuration in one single location,
+but to support legacy formats, we allow multiple points of entry.
 
 # Testing
 
