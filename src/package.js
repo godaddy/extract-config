@@ -19,8 +19,6 @@ module.exports = function (repo, callback) {
     const merged = { ...parsed, ...nested };
     delete merged.wrhs;
 
-    // now extract values that are not relevant to warehouse.ai
-
     callback(null, merged);
   });
 };

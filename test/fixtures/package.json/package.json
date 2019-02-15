@@ -1,6 +1,4 @@
 {
-  "name": "my-cool-package",
-  "version": "1.2.3",
   "build": "webpack",
   "locales": [
     "should-ignore-me"

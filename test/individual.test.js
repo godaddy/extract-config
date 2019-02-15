@@ -2,7 +2,7 @@ const path = require('path');
 const assume = require('assume');
 
 const wrhsrc = require('../src/wrhsrc');
-// const pkg = require('../src/package');
+const pkg = require('../src/package');
 const toml = require('../src/toml');
 
 function test({ fetcher, repo, expectation }) {
@@ -31,8 +31,14 @@ describe('Reading config from each source', function () {
   });
 
   describe('package.json', function () {
-    it('should return the correct config');
-    it('should return any empty object if no wrhs config is present');
+    it('should return the correct config', test({
+      fetcher: pkg,
+      repo: path.join(__dirname, 'fixtures', 'package.json'),
+      expectation: {
+        build: 'webpack',
+        locales: [ 'Sokovia', 'Wakanda', 'Latveria' ]
+      }
+    }));
   });
 
   describe('wrhs.toml', function () {
