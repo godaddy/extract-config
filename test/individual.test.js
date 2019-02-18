@@ -36,7 +36,7 @@ describe('Reading config from each source', function () {
       repo: path.join(__dirname, 'fixtures', 'package.json'),
       expectation: {
         build: 'webpack',
-        locales: [ 'Sokovia', 'Wakanda', 'Latveria' ]
+        locales: ['Sokovia', 'Wakanda', 'Latveria']
       }
     }));
   });

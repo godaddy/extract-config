@@ -1,0 +1,13 @@
+{
+  "build": "webpack",
+  "locales": [
+    "should-ignore-me"
+  ],
+  "wrhs": {
+    "locales": [
+      "Sokovia",
+      "Wakanda",
+      "Latveria"
+    ]
+  }
+}
