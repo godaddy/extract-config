@@ -17,7 +17,7 @@ module.exports = function generate(repo, callback) {
     cb => toml(repo, cb)
   ], (err, [rc, json, wrhs]) => {
     if (err) {
-      throw err;
+      return callback(err);
     }
 
     const merged = {

@@ -24,7 +24,7 @@ module.exports = function (repo, callback) {
     try {
       parsed = toml.parse(data);
     } catch (e) {
-      throw new Error(e.message);
+      return callback(e.message);
     }
 
     // the file does exist
