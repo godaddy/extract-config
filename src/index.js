@@ -1,8 +1,8 @@
 const async = require('async');
 
-const wrhsrc = require('./wrhsrc');
-const pkg = require('./package');
-const toml = require('./toml');
+const wrhsrcParse = require('./wrhsrc');
+const pkgParse = require('./package');
+const tomlParse = require('./toml');
 
 /**
  * Generate a standard Warehouse.ai configuration from a given unpacked directory.
@@ -12,18 +12,18 @@ const toml = require('./toml');
  */
 module.exports = function generate(repo, callback) {
   async.parallel([
-    cb => wrhsrc(repo, cb),
-    cb => pkg(repo, cb),
-    cb => toml(repo, cb)
-  ], (err, [rc, json, wrhs]) => {
+    cb => wrhsrcParse(repo, cb),
+    cb => pkgParse(repo, cb),
+    cb => tomlParse(repo, cb)
+  ], (err, [wrhsrc, json, toml]) => {
     if (err) {
       return callback(err);
     }
 
     const merged = {
-      ...wrhs, // toml file
+      ...toml, // toml file
       ...json, // package.json
-      ...rc // .wrhsrc
+      ...wrhsrc // .wrhsrc
     };
 
     callback(null, merged);

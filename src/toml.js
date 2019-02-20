@@ -15,7 +15,7 @@ module.exports = function (repo, callback) {
       return callback(err);
     }
 
-    // the file does not exist
+    // the file does not exist, which is fine
     if (err && err.code === 'ENOENT') {
       return callback(null, {});
     }
@@ -24,7 +24,7 @@ module.exports = function (repo, callback) {
     try {
       parsed = toml.parse(data);
     } catch (e) {
-      return callback(e.message);
+      return callback(err);
     }
 
     // the file does exist

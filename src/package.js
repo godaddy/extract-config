@@ -14,7 +14,13 @@ module.exports = function (repo, callback) {
       return callback(err);
     }
 
-    const parsed = JSON.parse(data);
+    let parsed = {};
+    try {
+      parsed = JSON.parse(data);
+    } catch (e) {
+      // there was an error parsing the package.json
+      return callback(e);
+    }
     const nested = parsed.wrhs || {};
     const merged = { ...parsed, ...nested };
     delete merged.wrhs;
