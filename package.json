@@ -4,9 +4,10 @@
   "description": "Extract warehouse.ai configuration from a given unpacked directory",
   "main": "src/index.js",
   "scripts": {
-    "lint": "eslint-godaddy src/*.js test/*.js",
+    "lint": "eslint-godaddy \"{src,test}/**/*.js\"",
     "test:unit": "mocha test/*.js",
-    "test": "npm run test:unit && npm run lint"
+    "test": "nyc npm run test:unit",
+    "posttest": "npm run lint"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
     "eslint-plugin-json": "^1.4.0",
     "eslint-plugin-mocha": "^5.3.0",
     "mocha": "^5.2.0",
+    "nyc": "^13.3.0",
     "proxyquire": "^2.1.0"
   },
   "dependencies": {

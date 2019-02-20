@@ -57,7 +57,7 @@ At most, the `config` will provide the following information:
    * Whether or not to perform a webpack build for this package, or if
    * we can just use the source of this directory as-is.
    *
-   * Optional
+   * Optional (default: none)
    */
   build: 'webpack',
 
@@ -65,7 +65,7 @@ At most, the `config` will provide the following information:
    * Different locales in which to build the package, this is helpful for
    * parallelizing builds for any number of locales.
    *
-   * Optional
+   * Optional (default: [])
    */
   locales: [
     'English',
@@ -108,20 +108,13 @@ At most, the `config` will provide the following information:
       join_vars: true
     }
   }
-
-  /**
-   * TODO: fill this in
-   */
-  i18n: {
-    // ¯\_(ツ)_/¯
-  }
 }
 ```
 
 ## Allowed files
 
-`@wrhs/extract-config` will recognize configuration options in this order to
-fill in the above `config`.
+`@wrhs/extract-config` will recognize the following configuration files and
+formats.
 
 ### `.wrhsrc`
 
@@ -148,12 +141,12 @@ the `wrhs` object if any)
 {
   "name": "my-cool-package",
   "version": "1.2.3",
-  "build": "webpack",
   "wrhs": {
+    "build": "webpack",
     "locales": [
-      "Sokovia",
-      "Wakanda",
-      "Latveria"
+      "en-US",
+      "es-CO",
+      "de-DE"
     ]
   }
 }
@@ -167,23 +160,42 @@ dev = ['output.js', 'output.css']
 test = ['output.min.js', 'output.min.css']
 prod = ['output.min.js', 'output.min.css']
 
+build = 'webpack'
+
+locales = [
+  'English',
+  'Sindarin',
+  'Klingon',
+  'Dothraki'
+]
+
+[minify]
 [minify.compress]
 unsafe = true
 dead_code = true
+unsafe = true
+dead_code = true
+collapse_vars = true
+drop_console = true
+conditionals = true
+booleans = true
+unused = true
+if_return = true
+join_vars = true
 ```
 
 ### Order of configuration precedence
 
-They are listed in order above, but we will take the first information, as it
-first appears, from the following files in this order:
+They are listed in order above, but we will resolve potentially conflicting
+information based on this precedence:
 
 1. `.wrhsrc`
 2. `package.json.wrhs`
 3. `package.json`
 4. `wrhs.toml`
 
-Any configuration from earlier in the list will identically named configuration
-later in the list. For example, I have these 2 files present:
+Any configuration from earlier in the list will override identically named
+configuration later in the list. For example, I have these 2 files present:
 
 `.wrhsrc`
 ```json
@@ -198,6 +210,7 @@ later in the list. For example, I have these 2 files present:
 `wrhs.toml`
 ```toml
 locales=['Krypton', 'Oa']
+
 [files]
 test = ['output.css']
 prod = ['output.min.css']
@@ -217,6 +230,9 @@ The final configuration object will be:
   }
 }
 ```
+
+It's important to note that nested lists and objects will *not* be merged, just
+overridden.
 
 We **highly** recommended keeping all of your configuration in one single location,
 but to support legacy formats, we allow multiple points of entry.
