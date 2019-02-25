@@ -6,12 +6,9 @@ const pkg = require('../src/package');
 const toml = require('../src/toml');
 
 function test({ fetcher, repo, expectation }) {
-  return function (done) {
-    fetcher(repo, (err, config) => {
-      assume(err).is.falsey();
-      assume(config).deep.equals(expectation);
-      done();
-    });
+  return async function () {
+    const config = await fetcher(repo);
+    assume(config).deep.equals(expectation);
   };
 }
 

@@ -3,16 +3,14 @@ const assume = require('assume');
 const extract = require('../src');
 
 describe('extract', function () {
-  it('returns appropriately merged contents of a repo with multiple config sources', function () {
+  it('returns appropriately merged contents of a repo with multiple config sources', async function () {
     const repo = path.join(__dirname, 'fixtures', 'multiple');
-    extract(repo, (err, config) => {
-      assume(err).is.falsey();
-      assume(config).deep.equals({
-        hello: 'there',
-        power: 'unlimited',
-        build: 'webpack',
-        locales: ['Sokovia', 'Wakanda', 'Latveria']
-      });
+    const config = await extract(repo);
+    assume(config).deep.equals({
+      hello: 'there',
+      power: 'unlimited',
+      build: 'webpack',
+      locales: ['Sokovia', 'Wakanda', 'Latveria']
     });
   });
 });

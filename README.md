@@ -20,31 +20,7 @@ const extract = require('@wrhs/extract-config');
 const path = require('path');
 const unpackedRepo = path.join('path', 'to', 'repo');
 
-extract(unpackedRepo, (err, config) => {
-  if(err) {
-    console.error(err);
-  }
-
-  console.log(config);
-});
-```
-
-Or if `async/await` is more your fancy:
-
-```js
-const { promisify } = require('util');
-const extract = require('@wrhs/extract-config');
-const extractAsync = promisify(extract)
-
-const path = require('path');
-const unpackedRepo = path.join('path', 'to', 'repo');
-
-(async function() {
-  const config = await extractAsync(unpackedRepo);
-
-  console.log(config);
-})();
-
+const config = await extract(unpackedRepo);
 ```
 
 # What is in `config`?
