@@ -15,15 +15,13 @@ module.exports = async function (repo) {
   try {
     data = await read(file);
   } catch (err) {
-    // there was an issue with reading the file
-    if (err.code !== 'ENOENT') {
-      throw err;
-    }
 
     // the file does not exist, which is fine
     if (err.code === 'ENOENT') {
-      return {};
+      return { };
     }
+
+    throw err;
   }
 
   return toml.parse(data);

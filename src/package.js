@@ -18,7 +18,15 @@ module.exports = async function (repo) {
 
   // the only fields we care about are `build`, `locales`, and `wrhs`,
   // so we extract them out to one merged object.
-  const { build, locales, wrhs } = data;
-  const merged = { build, locales, ...wrhs };
-  return merged;
+  const config = data.wrhs;
+  const base = {};
+  ['build', 'locales'].forEach(prop => {
+    // we use `in` here instead of a typical check boolean because
+    // config like `data.build = false` is perfectly valid
+    if (prop in data) {
+      base[prop] = data[prop];
+    }
+  });
+
+  return { ...base, ...config };
 };
