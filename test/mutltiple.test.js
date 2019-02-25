@@ -15,4 +15,13 @@ describe('extract', function () {
       power: 'unlimited'
     });
   });
+
+  it('does not override build and locales if they\'re not present in package.json', async function () {
+    const repo = path.join(__dirname, 'fixtures', 'build-missing');
+    const config  = await extract(repo);
+    assume(config).deep.equals({
+      build: 'please',
+      locales: ['en-US']
+    });
+  });
 });

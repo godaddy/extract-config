@@ -1,0 +1,4 @@
+build = 'please'
+locales = [
+  'en-US'
+]
