@@ -68,10 +68,10 @@ At most, the `config` will provide the following information:
    * Optional (default: [])
    */
   locales: [
-    'English',
-    'Sindarin',
-    'Klingon',
-    'Dothraki'
+    'en-US',
+    'es-CO',
+    'de-DE',
+    'zh-CN'
   ],
 
   /**
@@ -95,8 +95,8 @@ At most, the `config` will provide the following information:
   /**
    * Minification options to apply to the output code
    */
-  compress: {
-    minify: {
+  minify: {
+    compress: {
       unsafe: true,
       dead_code: true,
       collapse_vars: true,
@@ -147,7 +147,11 @@ the `wrhs` object if any)
       "en-US",
       "es-CO",
       "de-DE"
-    ]
+    ],
+    "files": {
+      "test": ["dist/output.js", "dist/output.css"],
+      "prod": ["dist/output.min.js", "dist/output.min.css"]
+    }
   }
 }
 ```

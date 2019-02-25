@@ -19,8 +19,15 @@ module.exports = function (repo, callback) {
       return callback(null, {});
     }
 
-
     // the file does exist
-    callback(null, JSON.parse(data));
+    let parsed = {};
+    try {
+      parsed = JSON.parse(data);
+    } catch (e) {
+      // file is malformed JSON
+      return callback(e);
+    }
+
+    callback(null, parsed);
   });
 };
