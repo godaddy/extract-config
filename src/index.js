@@ -1,6 +1,6 @@
-const wrhsrcParse = require('./wrhsrc');
-const pkgParse = require('./package');
-const tomlParse = require('./toml');
+const parseWrhsrc = require('./wrhsrc');
+const parsePackage = require('./package');
+const parseToml = require('./toml');
 
 /**
  * Generate a standard Warehouse.ai configuration from a given unpacked directory.
@@ -10,9 +10,9 @@ const tomlParse = require('./toml');
  */
 module.exports = async function generate(repo) {
   const [wrhsrc, json, toml] = await Promise.all([
-    wrhsrcParse(repo),
-    pkgParse(repo),
-    tomlParse(repo)
+    parseWrhsrc(repo),
+    parsePackage(repo),
+    parseToml(repo)
   ]);
 
   const merged = {

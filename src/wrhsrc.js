@@ -1,35 +1,30 @@
-const fs = require('fs');
 const path = require('path');
+const { promisify } = require('util');
+const fs = require('fs');
+const read = promisify(fs.readFile);
 
 /**
  * Return the .wrhsrc at a given path, or an empty object if no file exists
  * @param  {String}   repo     path to repo
  * @returns {Promise} completion handler
  */
-module.exports = function (repo) {
-  return new Promise((resolve, reject) => {
-    const file = path.join(repo, '.wrhsrc');
-    fs.readFile(file, 'utf8', (err, data) => {
-      // there was an issue with reading the file
-      if (err && err.code !== 'ENOENT') {
-        return reject(err);
-      }
+module.exports = async function (repo) {
+  const file = path.join(repo, '.wrhsrc');
 
-      // the file does not exist, which is fine
-      if (err && err.code === 'ENOENT') {
-        return resolve({});
-      }
+  let data = {};
+  try {
+    data = await read(file, 'utf8');
+  } catch (err) {
+    // the file does not exist, which is fine
+    if (err.code === 'ENOENT') {
+      return data;
+    }
 
-      // the file does exist
-      let parsed = {};
-      try {
-        parsed = JSON.parse(data);
-      } catch (e) {
-        // file is malformed JSON
-        return reject(e);
-      }
+    // there was an issue reading the file
+    if (err.code !== 'ENOENT') {
+      throw err;
+    }
+  }
 
-      resolve(parsed);
-    });
-  });
+  return JSON.parse(data);
 };
