@@ -170,9 +170,8 @@ They are listed in order above, but we will resolve potentially conflicting
 information based on this precedence:
 
 1. `.wrhsrc`
-2. `package.json.wrhs`
-3. `package.json`
-4. `wrhs.toml`
+2. `package.json`
+3. `wrhs.toml`
 
 Any configuration from earlier in the list will override identically named
 configuration later in the list. For example, I have these 2 files present:

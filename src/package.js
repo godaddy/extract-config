@@ -22,9 +22,11 @@ module.exports = function (repo) {
         // there was an error parsing the package.json
         return reject(e);
       }
-      const nested = parsed.wrhs || {};
-      const merged = { ...parsed, ...nested };
-      delete merged.wrhs;
+
+      // the only fields we care about are `build`, `locales`, and `wrhs`,
+      // so we extract them out to one merged object.
+      const { build, locales, wrhs } = parsed;
+      const merged = { build, locales, ...wrhs };
 
       resolve(merged);
     });
