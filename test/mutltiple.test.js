@@ -7,10 +7,12 @@ describe('extract', function () {
     const repo = path.join(__dirname, 'fixtures', 'multiple');
     const config = await extract(repo);
     assume(config).deep.equals({
-      hello: 'there',
-      power: 'unlimited',
+      locales: ['Sokovia', 'Wakanda', 'Latveria'],
+      files: {
+        test: ['output.js', 'output.css', 'nuclear-launch-codes.css'],
+        prod: ['output.min.js', 'output.min.css'] },
       build: 'webpack',
-      locales: ['Sokovia', 'Wakanda', 'Latveria']
+      power: 'unlimited'
     });
   });
 });

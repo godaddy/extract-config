@@ -42,7 +42,13 @@ describe('Reading config from each source', function () {
     it('should return the correct config', test({
       fetcher: toml,
       repo: path.join(__dirname, 'fixtures', 'wrhs.toml'),
-      expectation: { hello: 'there' }
+      expectation: {
+        locales: ['ab-CD', 'ef-HI', 'wx-YZ'],
+        files: {
+          test: ['output.js', 'output.css', 'nuclear-launch-codes.css'],
+          prod: ['output.min.js', 'output.min.css']
+        }
+      }
     }));
 
     it('should not return anything from a repo that does not have one', test({
