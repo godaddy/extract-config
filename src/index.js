@@ -24,7 +24,7 @@ module.exports = async function generate(repo) {
 
   return {
     pkg: json.package,
-    main: json.main,
+    main: json.package.main,
     config: merged
   };
 };

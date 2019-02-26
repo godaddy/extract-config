@@ -16,6 +16,12 @@ describe('extract', function () {
     });
   });
 
+  it('returns the correct main data', async function () {
+    const repo = path.join(__dirname, 'fixtures', 'multiple');
+    const config = await extract(repo);
+    assume(config.main).equals('street');
+  });
+
   it('does not override build and locales if they\'re not present in package.json', async function () {
     const repo = path.join(__dirname, 'fixtures', 'build-missing');
     const config  = await extract(repo);

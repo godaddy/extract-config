@@ -31,5 +31,5 @@ module.exports = async function (repo) {
   return {
     package: data, // the entire package.json
     config: { ...base, ...config } // the extracted warehouse config
-  }
+  };
 };
