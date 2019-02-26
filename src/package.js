@@ -28,5 +28,8 @@ module.exports = async function (repo) {
     }
   });
 
-  return { ...base, ...config };
+  return {
+    package: data, // the entire package.json
+    config: { ...base, ...config } // the extracted warehouse config
+  }
 };

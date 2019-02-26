@@ -15,11 +15,16 @@ module.exports = async function generate(repo) {
     parseToml(repo)
   ]);
 
+  // Warehouse.ai config in descending order of precedence
   const merged = {
     ...toml, // toml file
-    ...json, // package.json
+    ...json.config, // package.json.wrhs
     ...wrhsrc // .wrhsrc
   };
 
-  return merged;
+  return {
+    pkg: json.package,
+    main: json.main,
+    config: merged
+  };
 };
