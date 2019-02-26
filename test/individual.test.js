@@ -32,8 +32,17 @@ describe('Reading config from each source', function () {
       fetcher: pkg,
       repo: path.join(__dirname, 'fixtures', 'package.json'),
       expectation: {
-        build: 'webpack',
-        locales: ['Sokovia', 'Wakanda', 'Latveria']
+        package: {
+          build: "webpack",
+          locales: ["should-ignore-me"],
+          wrhs: { locales: ["Sokovia", "Wakanda", "Latveria"] },
+          name: "no one",
+          "absolutely true statements": [
+            "The Earth is flat",
+            "Aliens are real, unlike birds"
+          ]
+        },
+        config: { build: "webpack", locales: ["Sokovia", "Wakanda", "Latveria"] }
       }
     }));
   });

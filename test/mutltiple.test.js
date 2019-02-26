@@ -6,7 +6,7 @@ describe('extract', function () {
   it('returns appropriately merged contents of a repo with multiple config sources', async function () {
     const repo = path.join(__dirname, 'fixtures', 'multiple');
     const config = await extract(repo);
-    assume(config).deep.equals({
+    assume(config.config).deep.equals({
       locales: ['Sokovia', 'Wakanda', 'Latveria'],
       files: {
         test: ['output.js', 'output.css', 'nuclear-launch-codes.css'],
@@ -19,7 +19,7 @@ describe('extract', function () {
   it('does not override build and locales if they\'re not present in package.json', async function () {
     const repo = path.join(__dirname, 'fixtures', 'build-missing');
     const config  = await extract(repo);
-    assume(config).deep.equals({
+    assume(config.config).deep.equals({
       build: 'please',
       locales: ['en-US']
     });

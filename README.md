@@ -29,59 +29,57 @@ At most, the `config` will provide the following information:
 
 ```js
 {
-  /**
-   * Whether or not to perform a webpack build for this package, or if
-   * we can just use the source of this directory as-is.
-   *
-   * Optional (default: none)
-   */
-  build: 'webpack',
-
-  /**
-   * Different locales in which to build the package, this is helpful for
-   * parallelizing builds for any number of locales.
-   *
-   * Optional (default: [])
-   */
-  locales: [
-    'en-US',
-    'es-CO',
-    'de-DE',
-    'zh-CN'
-  ],
-
-  /**
-   * What recommended files to use in each environment
-   */
-  files: {
-    dev: [
-      'dist/output.css',
-      'dist/output.js'
-    ],
-    test: [
-      'dist/output.min.css',
-      'dist/output.min.js'
-    ],
-    prod: [
-      'dist/output.min.css',
-      'dist/output.min.js'
-    ]
+  pkg: {
+    // the entire contents of the repo's package.json
   },
+  main: 'the main entry point for running webpack',
+  config: {
+    // Whether or not to perform a webpack build for this package, or if
+    // we can just use the source of this directory as-is.
+    //
+    // Optional (default: none)
+    build: 'webpack',
 
-  /**
-   * Minification options to apply to the output code
-   */
-  minify: {
-    compress: {
-      unsafe: true,
-      dead_code: true,
-      collapse_vars: true,
-      drop_console: true,
-      conditionals: true,
-      booleans: true,
-      unused: true,
-      if_return: true,
-      join_vars: true
+    // Different locales in which to build the package, this is helpful for
+    // parallelizing builds for any number of locales.
+    //
+    // Optional (default: [])
+    locales: [
+      'en-US',
+      'es-CO',
+      'de-DE',
+      'zh-CN'
+    ],
+
+    // What recommended files to use in each environment
+    files: {
+      dev: [
+        'dist/output.css',
+        'dist/output.js'
+      ],
+      test: [
+        'dist/output.min.css',
+        'dist/output.min.js'
+      ],
+      prod: [
+        'dist/output.min.css',
+        'dist/output.min.js'
+      ]
+    },
+
+    // Minification options to apply to the output code
+    minify: {
+      compress: {
+        unsafe: true,
+        dead_code: true,
+        collapse_vars: true,
+        drop_console: true,
+        conditionals: true,
+        booleans: true,
+        unused: true,
+        if_return: true,
+        join_vars: true
+      }
     }
   }
 }
