@@ -1,0 +1,9 @@
+locales = [
+  'ab-CD',
+  'ef-HI',
+  'wx-YZ'
+]
+
+[files]
+test = ['output.js', 'output.css', 'nuclear-launch-codes.css']
+prod = ['output.min.js', 'output.min.css']
