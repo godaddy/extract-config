@@ -1,6 +1,6 @@
 {
   "name": "@wrhs/extract-config",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Extract warehouse.ai configuration from a given unpacked directory",
   "main": "lib/index.js",
   "scripts": {
