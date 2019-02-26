@@ -1,9 +1,9 @@
 const path = require('path');
 const assume = require('assume');
 
-const wrhsrc = require('../src/wrhsrc');
-const pkg = require('../src/package');
-const toml = require('../src/toml');
+const wrhsrc = require('../lib/wrhsrc');
+const pkg = require('../lib/package');
+const toml = require('../lib/toml');
 
 function test({ fetcher, repo, expectation }) {
   return async function () {

@@ -1,6 +1,6 @@
 const path = require('path');
 const assume = require('assume');
-const extract = require('../src');
+const extract = require('../lib');
 
 describe('extract', function () {
   it('returns appropriately merged contents of a repo with multiple config sources', async function () {
