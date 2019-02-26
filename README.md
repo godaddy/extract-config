@@ -32,8 +32,7 @@ At most, the `config` will provide the following information:
   pkg: {
     // the entire contents of the repo's package.json
   },
-  main: 'the main entry point for running webpack',
-  config: {
+  wrhs: {
     // Whether or not to perform a webpack build for this package, or if
     // we can just use the source of this directory as-is.
     //

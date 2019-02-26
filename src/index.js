@@ -23,8 +23,7 @@ module.exports = async function generate(repo) {
   };
 
   return {
-    pkg: json.package,
-    main: json.package.main,
-    config: merged
+    pkg: { ...json.package }, // the original package.json
+    wrhs: { ...merged } // the warehouse.ai - specific configuration
   };
 };
