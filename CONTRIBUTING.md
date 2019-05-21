@@ -109,7 +109,7 @@ by the [Godaddy JS styleguide][style].
 - [GitHub Pull Request documentation](https://help.github.com/send-pull-requests/)
 - [JSDoc]
 
-[issues]: https://github.com/godaddy/warehouse.ai/issues
+[issues]: https://github.com/warehouseai/extract-config/issues
 [slack]: https://godaddy-oss.slack.com/messages/CHXEP5DNH
 [JSDoc]: http://usejsdoc.org/
 [npm]: http://npmjs.org/
