@@ -1,10 +1,10 @@
 # `@wrhs/extract-config`
 
 [![Version npm](https://img.shields.io/npm/v/@wrhs/extract-config.svg?style=flat-square)](https://www.npmjs.com/package/@wrhs/extract-config)
-[![License](https://img.shields.io/npm/l/wrhs.svg?style=flat-square)](https://github.com/warehouseai/extract-config/blob/master/package.json)
+[![License](https://img.shields.io/npm/l/wrhs.svg?style=flat-square)](https://github.com/warehouseai/extract-config/blob/master/LICENSE)
 [![npm Downloads](https://img.shields.io/npm/dm/@wrhs/extract-config.svg?style=flat-square)](https://npmcharts.com/compare/@wrhs/extract-config?minimal=true)
 [![Build Status](https://travis-ci.com/warehouseai/extract-config.svg?branch=master)](https://travis-ci.com/warehouseai/extract-config)
-[![Dependencies](https://img.shields.io/david/@wrhs/extract-config.svg?style=flat-square)](https://david-dm.org/@wrhs/extract-config)
+[![Dependencies](https://img.shields.io/david/warehouseai/extract-config.svg?style=flat-square)](https://github.com/warehouseai/extract-config/blob/master/package.json)
 
 Extracts warehouse.ai configuration from a given unpacked directory
 
