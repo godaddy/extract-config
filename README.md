@@ -1,19 +1,20 @@
 # `@wrhs/extract-config`
 
 [![Version npm](https://img.shields.io/npm/v/@wrhs/extract-config.svg?style=flat-square)](https://www.npmjs.com/package/@wrhs/extract-config)
+[![License](https://img.shields.io/npm/l/@wrhs/extract-config.svg?style=flat-square)](https://github.com/warehouseai/extract-config/blob/master/LICENSE)
 [![npm Downloads](https://img.shields.io/npm/dm/@wrhs/extract-config.svg?style=flat-square)](https://npmcharts.com/compare/@wrhs/extract-config?minimal=true)
 [![Build Status](https://travis-ci.com/warehouseai/extract-config.svg?branch=master)](https://travis-ci.com/warehouseai/extract-config)
-[![Dependencies](https://img.shields.io/david/@wrhs/extract-config.svg?style=flat-square)](https://david-dm.org/@wrhs/extract-config)
+[![Dependencies](https://img.shields.io/david/warehouseai/extract-config.svg?style=flat-square)](https://github.com/warehouseai/extract-config/blob/master/package.json)
 
 Extracts warehouse.ai configuration from a given unpacked directory
 
-## Installation
+## Install
 
 ```
 npm install --save @wrhs/extract-config
 ```
 
-# Usage
+## Usage
 
 ```js
 const extract = require('@wrhs/extract-config');
@@ -23,7 +24,7 @@ const unpackedRepo = path.join('path', 'to', 'repo');
 const config = await extract(unpackedRepo);
 ```
 
-# What is in `config`?
+## What is in `config`?
 
 At most, the `config` will provide the following information:
 
@@ -84,12 +85,12 @@ At most, the `config` will provide the following information:
 }
 ```
 
-## Allowed files
+### Allowed files
 
 `@wrhs/extract-config` will recognize the following configuration files and
 formats.
 
-### `.wrhsrc`
+#### `.wrhsrc`
 
 This is a simple `json` file that contains information in the above format
 
@@ -104,7 +105,7 @@ This is a simple `json` file that contains information in the above format
 }
 ```
 
-### `package.json`
+#### `package.json`
 
 Similar to `.wrhsrc` you can place these values into either the base level of
 your `package.json`, or into a `wrhs` object (we will merge the base level into
@@ -129,7 +130,7 @@ the `wrhs` object if any)
 }
 ```
 
-### `wrhs.toml`
+#### `wrhs.toml`
 
 ```toml
 [files]
@@ -161,7 +162,7 @@ if_return = true
 join_vars = true
 ```
 
-### Order of configuration precedence
+#### Order of configuration precedence
 
 They are listed in order above, but we will resolve potentially conflicting
 information based on this precedence:
@@ -213,7 +214,7 @@ overridden.
 We **highly** recommended keeping all of your configuration in one single location,
 but to support legacy formats, we allow multiple points of entry.
 
-# Testing
+## Testing
 
 ```
 npm test
